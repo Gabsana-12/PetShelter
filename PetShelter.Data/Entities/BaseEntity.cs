@@ -1,4 +1,6 @@
-﻿namespace PetShelter.Data.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace PetShelter.Data.Entities
 {
     public abstract class BaseEntity
     {

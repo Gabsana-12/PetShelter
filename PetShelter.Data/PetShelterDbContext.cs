@@ -37,6 +37,7 @@ namespace PetShelter.Data
                 .WithOne(p =>p.Adopter)
                 .HasForeignKey(p => p.AdopterId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<User>()
                 .HasMany(u => u.GivenPets)
                 .WithOne(u => u.Giver)

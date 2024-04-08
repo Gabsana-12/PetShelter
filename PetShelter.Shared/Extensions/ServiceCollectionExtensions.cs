@@ -11,7 +11,7 @@ namespace PetShelter.Shared.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AutoBind(this IServiceProvider source, params Assembly[] assemblies)
+        public static void AutoBind(this IServiceCollection source, params Assembly[] assemblies)
         {
             source.Scan(scan => scan.FromAssemblies(assemblies)
             .AddClasses(classes => classes.WithAttribute<AutoBindAttribute>())

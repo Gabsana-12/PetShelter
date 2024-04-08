@@ -41,7 +41,7 @@ namespace PetShelter.Data.Repos
             return this.MapToEnumerableOfModel(await _dbSet.ToListAsync());
         }
         
-        public async Task<TModel> GetByAsync(int id)
+        public async Task<TModel> GetByIdAsync(int id)
         {
             var user = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
             if (user == null)
@@ -94,7 +94,7 @@ namespace PetShelter.Data.Repos
             
         }
 
-        public async Task TaskAsync(TModel model)
+        public async Task SaveAsync(TModel model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
@@ -102,6 +102,60 @@ namespace PetShelter.Data.Repos
                 await UpdateAsync(model);
             else
                 await CreateAsync(model);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await this._dbSet.FindAsync(id);
+
+            if(entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            try
+            {
+                _dbSet.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
+            catch (SqlException ex)
+            {
+                await Console.Out.WriteLineAsync($"The system threw an SQL exception trying to delete {nameof(entity)} : {ex.Message}");
+            }
+            catch(Exception ex)
+            {
+                await Console.Out.WriteLineAsync($"The system threw a non-sql exception trying to delete {nameof(entity)} : {ex.Message}");
+            }
+        }
+
+        public Task<bool> ExistsByIdAsync(int id)
+        {
+            return _dbSet.AnyAsync(e => e.Id == id);
+        }
+
+        public async Task<IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber)
+        {
+            var paginatedRecords = await _dbSet
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            return MapToEnumerableOfModel(paginatedRecords);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -14,6 +14,18 @@ namespace PetShelterMVC
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<PetShelterDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+            });
+            var app = bulider.Build();
+
+            using(var scope = app.Service.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<PetShelterDbContext>();
+                context.Database.Migrate();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

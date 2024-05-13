@@ -21,7 +21,7 @@ namespace PetShelterMVC
             });
             var app = bulider.Build();
 
-            using(var scope = app.Service.CreateScope())
+            using(var scope = app.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<PetShelterDbContext>();
                 context.Database.Migrate();

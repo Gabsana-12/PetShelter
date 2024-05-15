@@ -1,14 +1,24 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.VisualBasic;
+using PetShelter.Services;
+using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
+using PetShelterMVC.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Constants = Microsoft.VisualBasic.Constants;
 
 namespace PetShelterMVC.Controllers
 {
     public abstract class BaseCrudController<TModel, TRepository, TService, TEditVM, TDetailsVM> : Controller
         where TModel : BaseModel
         where TRepository : IBaseRepository<TModel>
-        where TService : IBaseCrudService<TModel, TRepository>
+        where TService : BaseCrudService<TModel, TRepository>
         where TEditVM:BaseVM, new()
         where TDetailsVM : BaseVM
     {
@@ -61,7 +71,7 @@ namespace PetShelterMVC.Controllers
             var model = await this._service.GetByIdIfExistsAsync(id);
             if (model == default)
             {
-                return BadRequest(Constanst.InvalidId);
+                return BadRequest(Constants.InvalidId);
             }
             var mappedModel = _mapper.Map<TDetailsVM>(model);
             return View(mappedModel);

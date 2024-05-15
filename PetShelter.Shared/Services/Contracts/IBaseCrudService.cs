@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Shared.Services.Contracts
 {
-    internal interface IBaseCrudService<TModel, TRepository>
+   public interface IBaseCrudService<TModel, TRepository>
         where TModel : BaseModel
-        where TRepository : IBaseRepository<TModel>
+        where TRepository: IBaseRepository<TModel>
     {
         Task<TModel> GetByIdIfExistsAsync(int id);
         Task SaveAsync(TModel model);
         Task DeleteAsync(int id);
-        Task <IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber);
+        Task<IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber);
         Task<bool> ExistsByIdAsync(int id);
     }
 }

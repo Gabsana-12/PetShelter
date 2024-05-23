@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Data
 {
-    class PetShelterDbContext : DbContext
+    public class PetShelterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
@@ -45,9 +45,9 @@ namespace PetShelter.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Shelter>()
-                .HasOne(a => a.Location)
+                .HasOne(a => a.Breed)
                 .WithOne(a => a.Shelter)
-                .HasForeignKey<Location>(c => c.ShelterId);
+                .HasForeignKey<Breed>(c => c.ShelterId);
 
             foreach (var role in Enum.GetValues(typeof(UserRole)).Cast<UserRole>())
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace PetShelter.Data.Entities
 {
@@ -12,9 +13,9 @@ namespace PetShelter.Data.Entities
 
         public int PetCapacity { get; set; }
 
-        public int LocationId { get; set; }
+        public int BreedId { get; set; }
 
-        public virtual Location Location { get; set; }
+        public virtual Breed Breed { get; set; }
 
         public virtual List<User> Employees { get; set; }
 

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PetShelter.Data\PetShelter.Data.csproj" />
     <ProjectReference Include="..\PetShelter.Shared\PetShelter.Shared.csproj" />
   </ItemGroup>
 

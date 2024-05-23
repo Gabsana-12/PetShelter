@@ -1,6 +1,10 @@
-﻿namespace PetShelter.Services
+﻿using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
+using PetShelter.Shared.Services.Contracts;
+
+namespace PetShelter.Services
 {
-    internal interface IBreedsService
+    public interface IBreedsService : IBaseCrudService<BreedDto, IBreedRepository>
     {
     }
 }

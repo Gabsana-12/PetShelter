@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PetShelter.Shared.Extensions;
-using static System.Collections.Immutable.ImmutableArray<T>;
+using Jose;
+using PetShelter.Data;
 
 namespace PetShelterMVC
 {
@@ -17,7 +18,7 @@ namespace PetShelterMVC
         {
             CreateHostBuilder(args).Build().Run();
             builder.Services.AddControllersWithViews();
-            Builder.Services.AddDbContext<PetShelterDbContext>(options =>
+            builder.Services.AddDbContext<PetShelterDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
             });
@@ -35,7 +36,7 @@ namespace PetShelterMVC
             builder.Services.AutoBind(typeof(PetsRepository).Assembly);
 
             //builder.Services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
-            //IJwtSettings settings = builder.Configuration.GetSection(typeof(JwtSettings).Name).Get<JwtSettings>();
+            IJwtSettings settings = builder.Configuration.GetSection(typeof(JwtSettings).Name).Get<JwtSettings>();
 
             //IJwtSettings settings = builder.Configuration.GetSection(typeof(JwtSettings).Name).Get<JwtSettings>();
 

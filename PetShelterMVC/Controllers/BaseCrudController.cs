@@ -6,6 +6,7 @@ using Microsoft.VisualBasic;
 using PetShelter.Services;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
+using PetShelter.Shared.Services.Contracts;
 using PetShelterMVC.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Constants = Microsoft.VisualBasic.Constants;
 
+
 namespace PetShelterMVC.Controllers
 {
     public abstract class BaseCrudController<TModel, TRepository, TService, TEditVM, TDetailsVM> : Controller
         where TModel : BaseModel
         where TRepository : IBaseRepository<TModel>
-        where TService : BaseCrudService<TModel, TRepository>
+        where TService : IBaseCrudService<TModel, TRepository>
         where TEditVM:BaseVM, new()
         where TDetailsVM : BaseVM
     {

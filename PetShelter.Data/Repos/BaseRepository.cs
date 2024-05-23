@@ -21,6 +21,13 @@ namespace PetShelter.Data.Repos
         protected readonly IMapper mapper;
         private bool disposedValue;
 
+        protected BaseRepository(PetShelterDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _dbSet = _context.Set<T>();
+            this.mapper = mapper;
+        }
+
         public virtual TModel MapToModel(T entity)
         {
             return mapper.Map<TModel>(entity);
@@ -77,9 +84,10 @@ namespace PetShelter.Data.Repos
 
             try
             {
-                var entity = this._dbSet.FindAsync(model.Id);
+                var entity = await this._dbSet.FindAsync(model.Id);
                 if (entity == null)
                     throw new ArgumentNullException(nameof(entity));
+
                 _context.Entry(entity).CurrentValues.SetValues(model);
                 await _context.SaveChangesAsync();
             }

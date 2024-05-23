@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using PetShelter.Services;
 using PetShelter.Shared.Dtos;
@@ -13,7 +14,8 @@ namespace PetShelterMVC.Controllers
 {
 
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Admin, Employee")]
-    public class BreedController : BaseCrudController<BreedDto, IBreedRepository, BreedsService, BreedEditVM, BreedDetailsVM>
+    public class BreedController : BaseCrudController<BreedDto, IBreedRepository, IBreedsService, BreedEditVM, BreedDetailsVM>
     {
+        public BreedController(IBreedsService service, IMapper mapper) : base(service, mapper) { }
     }
 }

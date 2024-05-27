@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
-using PetShelter.Services;
+using PetShelter.Services.Services;
 using PetShelterMVC.ViewModel;
 using System.Threading.Tasks;
 

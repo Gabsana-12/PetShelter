@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetShelter.Services
+namespace PetShelter.Services.Services
 {
     public abstract class BaseCrudService<TModel, TRepository> : IBaseCrudService<TModel, TRepository>
         where TModel : BaseModel
@@ -17,7 +17,7 @@ namespace PetShelter.Services
         protected readonly TRepository _repository;
         protected BaseCrudService(TRepository repository)
         {
-            this._repository = repository;
+            _repository = repository;
         }
 
         public virtual async Task SaveAsync(TModel model)
@@ -26,11 +26,11 @@ namespace PetShelter.Services
             {
                 throw new ArgumentNullException(nameof(model));
             }
-            await this._repository.SaveAsync(model);
+            await _repository.SaveAsync(model);
         }
-        public virtual Task DeleteAsync(int id) => this._repository.DeleteAsync(id);
-        public virtual Task<Model> GetByIdIfExistsAsync(int id) => this._repository.GetByIdAsync(id);
-        public virtual Task<IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber) => this._repository.GetWithPaginationAsync(pageSize, pageNumber);
-        public Task<bool> ExistsByIdAsync(int id ) => this._repository.ExistsByIdAsync(id);
+        public virtual Task DeleteAsync(int id) => _repository.DeleteAsync(id);
+        public virtual Task<Model> GetByIdIfExistsAsync(int id) => _repository.GetByIdAsync(id);
+        public virtual Task<IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber) => _repository.GetWithPaginationAsync(pageSize, pageNumber);
+        public Task<bool> ExistsByIdAsync(int id) => _repository.ExistsByIdAsync(id);
     }
 }

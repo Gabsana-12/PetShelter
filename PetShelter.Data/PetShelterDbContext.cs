@@ -13,6 +13,14 @@ namespace PetShelter.Data
     public class PetShelterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Breed> Breed { get; set; }
+        public DbSet<Location> Location { get; set; }
+        public DbSet<Pet> Pet { get; set; }
+        public DbSet<PetType> PetType { get; set; }
+        public DbSet<PetVaccine> PetVaccine { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<Shelter> Shelter { get; set; }
+        public DbSet<Vaccine> Vaccine { get; set; }
 
         public PetShelterDbContext(DbContextOptions<PetShelterDbContext> options) : base(options)
         {
@@ -27,6 +35,8 @@ namespace PetShelter.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Breed>()
                 .HasMany(b => b.Pets)
                 .WithOne(p => p.Breed)
@@ -45,9 +55,9 @@ namespace PetShelter.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Shelter>()
-                .HasOne(a => a.Breed)
-                .WithOne(a => a.Shelter)
-                .HasForeignKey<Breed>(c => c.ShelterId);
+            .HasOne(a => a.Location)
+            .WithOne(a => a.Shelter)
+            .HasForeignKey<Location>(c => c.ShelterId);
 
             foreach (var role in Enum.GetValues(typeof(UserRole)).Cast<UserRole>())
             {

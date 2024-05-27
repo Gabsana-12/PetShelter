@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Shared.Repos.Contracts
 {
-    internal interface IPetsRepository : IBaseRepository<LocationDto>
+    public interface IPetsRepository : IBaseRepository<PetDto>
     {
     }
 }

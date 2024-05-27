@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetShelter.Services
+namespace PetShelter.Services.Services
 {
     [AutoBind]
     public class BreedsService : BaseCrudService<BreedDto, IBreedRepository>, IBreedsService

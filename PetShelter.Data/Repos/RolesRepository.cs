@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PetShelter.Data.Entities;
 using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

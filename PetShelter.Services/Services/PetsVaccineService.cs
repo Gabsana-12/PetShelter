@@ -1,4 +1,5 @@
 ﻿using PetShelter.Data.Repos;
+using PetShelter.Shared.Attributes;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using System;
@@ -9,8 +10,9 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Services.Services
 {
-    internal class PetsVaccineService : BaseCrudService<PetVaccineDto, IPetsVaccineRepository>, ILocationsService
+    [AutoBind]
+    public class PetsVaccineService : BaseCrudService<PetVaccineDto, IPetsVaccineRepository>, IPetVaccineService
     {
-        public PetsVaccineService(IBreedRepository repository) : base(repository) { }
+        public PetsVaccineService(IPetsVaccineRepository repository) : base(repository) { }
     }
 }

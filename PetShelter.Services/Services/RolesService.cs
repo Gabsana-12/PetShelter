@@ -1,4 +1,5 @@
-﻿using PetShelter.Shared.Dtos;
+﻿using PetShelter.Shared.Attributes;
+using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Services.Services
 {
-    internal class RolesService : BaseCrudService<RoleDto, IRolesRepository>, IRolesService
+    [AutoBind]
+    public class RolesService : BaseCrudService<RoleDto, IRolesRepository>, IRoleService
     {
-        public RolesService(IBreedRepository repository) : base(repository) { }
+        public RolesService(IRolesRepository repository) : base(repository) { }
     }
 }

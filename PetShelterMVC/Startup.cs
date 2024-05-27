@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PetShelter.Data;
+using PetShelter.Data.Repos;
+using PetShelter.Services.Services;
+using PetShelter.Shared.Repos.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +29,19 @@ namespace PetShelterMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddControllersWithViews();
+            services.AddDbContext<PetShelterDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+            });
+
+
+            services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
+
+            services.AutoBind(typeof(PetsService).Assembly);
+            services.AutoBind(typeof(PetsRepository).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +56,11 @@ namespace PetShelterMVC
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<PetShelterDbContext>();
+                context.Database.Migrate();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();

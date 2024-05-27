@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using PetShelter.Data.Entities;
 using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Data.Repos
 {
-    internal class PetsTypeRepository : BaseRepository<PetsTypeRepository, PetTypeDto>, IPetTypeRepository
+   public class PetsTypeRepository : BaseRepository<PetType, PetTypeDto>, IPetsTypeRepository
     {
         public PetsTypeRepository(PetShelterDbContext context, IMapper mapper) : base(context, mapper)
         {

@@ -1,10 +1,13 @@
-﻿using PetShelter.Shared.Dtos;
+﻿using PetShelter.Data.Repos;
+using PetShelter.Shared.Attributes;
+using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 
 namespace PetShelter.Services.Services
 {
-    public class LocationsService : BaseCrudService<LocationDto, ILocationRepository>, ILocationsService
+    [AutoBind]
+    public class LocationsService : BaseCrudService<LocationDto, ILocationsRepository>, ILocationsService
     {
-        public LocationsService(IBreedRepository repository) : base(repository) { }
+        public LocationsService(ILocationsRepository repository) : base(repository) { }
     }
 }

@@ -29,7 +29,7 @@ namespace PetShelter.Services.Services
             await _repository.SaveAsync(model);
         }
         public virtual Task DeleteAsync(int id) => _repository.DeleteAsync(id);
-        public virtual Task<Model> GetByIdIfExistsAsync(int id) => _repository.GetByIdAsync(id);
+        public virtual Task<TModel> GetByIdIfExistsAsync(int id) => _repository.GetByIdAsync(id);
         public virtual Task<IEnumerable<TModel>> GetWithPaginationAsync(int pageSize, int pageNumber) => _repository.GetWithPaginationAsync(pageSize, pageNumber);
         public Task<bool> ExistsByIdAsync(int id) => _repository.ExistsByIdAsync(id);
     }

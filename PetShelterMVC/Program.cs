@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using PetShelter.Shared.Extensions;
 using Jose;
 using PetShelter.Data;
+using PetShelter.Services.Services;
+using PetShelter.Shared.Repos.Contracts;
 
 namespace PetShelterMVC
 {
@@ -17,26 +19,8 @@ namespace PetShelterMVC
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<PetShelterDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
-            });
-            var app = builder.Build();
-
-            using(var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<PetShelterDbContext>();
-                context.Database.Migrate();
-            }
-
-            builder.Services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
-
-            builder.Services.AutoBind(typeof(PetsService).Assembly);
-            builder.Services.AutoBind(typeof(PetsRepository).Assembly);
 
             //builder.Services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
-            IJwtSettings settings = builder.Configuration.GetSection(typeof(JwtSettings).Name).Get<JwtSettings>();
 
             //IJwtSettings settings = builder.Configuration.GetSection(typeof(JwtSettings).Name).Get<JwtSettings>();
 

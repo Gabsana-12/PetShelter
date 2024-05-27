@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.VisualBasic;
 using PetShelter.Services;
+using PetShelter.Shared;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using PetShelter.Shared.Services.Contracts;
@@ -12,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Constants = Microsoft.VisualBasic.Constants;
 
 
 namespace PetShelterMVC.Controllers
@@ -103,6 +101,11 @@ namespace PetShelterMVC.Controllers
         public virtual async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
+            {
+                return BadRequest(Constants.InvalidId);
+            }
+            var model = await this._service.GetByIdIfExistsAsync(id.Value);
+            if (model == default)
             {
                 return BadRequest(Constants.InvalidId);
             }

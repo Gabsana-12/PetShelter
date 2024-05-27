@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Services
 {
-    internal interface IPetsService : IBaseCrudService<PetDto, IPetsRepository>
+    public interface IPetsService : IBaseCrudService<PetDto, IPetsRepository>
     {
     }
 }

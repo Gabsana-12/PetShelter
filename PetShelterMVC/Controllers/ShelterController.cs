@@ -1,14 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.IdentityModel.Tokens;
+using PetShelter.Services;
 using PetShelter.Services.Services;
+using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
 using PetShelterMVC.ViewModel;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace PetShelterMVC.Controllers
 {
-    public class ShelterController
+
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Admin, Employee")]
+    public class ShelterController : BaseCrudController<ShelterDto, ISheltersRepository, IShelterService, ShelterEditVM, ShelterDetailsVM>
     {
-        private LocationsService _locationsService;
+        public ILocationsService _locationsService { get; set; }
+
+        public ShelterController(IShelterService service, IMapper mapper, ILocationsService locationsService) : base(service, mapper)
+        {
+            _locationsService = locationsService;
+        }
         protected override async Task<ShelterEditVM> PrePopulateVMAsync()
         {
             var editVM = new ShelterEditVM

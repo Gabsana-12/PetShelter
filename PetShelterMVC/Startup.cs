@@ -1,3 +1,5 @@
+using Jose;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,8 +32,6 @@ namespace PetShelterMVC
         {
             services.AddControllersWithViews();
 
-
-            services.AddControllersWithViews();
             services.AddDbContext<PetShelterDbContext>(options =>
             {
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
@@ -40,8 +40,12 @@ namespace PetShelterMVC
 
             services.AddAutoMapper(m => m.AddProfile(new AutoMapperConfiguration()));
 
-            services.AutoBind(typeof(PetsService).Assembly);
-            services.AutoBind(typeof(PetsRepository).Assembly);
+
+
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

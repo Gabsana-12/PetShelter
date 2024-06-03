@@ -13,14 +13,14 @@ namespace PetShelter.Data
     public class PetShelterDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Breed> Breed { get; set; }
-        public DbSet<Location> Location { get; set; }
-        public DbSet<Pet> Pet { get; set; }
-        public DbSet<PetType> PetType { get; set; }
-        public DbSet<PetVaccine> PetVaccine { get; set; }
-        public DbSet<Role> Role { get; set; }
-        public DbSet<Shelter> Shelter { get; set; }
-        public DbSet<Vaccine> Vaccine { get; set; }
+        public DbSet<Breed> Breeds { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Pet> Pets { get; set; }
+        public DbSet<PetType> PetTypes { get; set; }
+        public DbSet<PetVaccine> PetVaccines { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Shelter> Shelters { get; set; }
+        public DbSet<Vaccine> Vaccines { get; set; }
 
         public PetShelterDbContext(DbContextOptions<PetShelterDbContext> options) : base(options)
         {

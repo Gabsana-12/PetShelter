@@ -1,0 +1,16 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using PetShelter.Services;
+using PetShelter.Shared.Dtos;
+using PetShelter.Shared.Repos.Contracts;
+using PetShelterMVC.ViewModel;
+
+namespace PetShelterMVC.Controllers
+{
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Admin, Employee")]
+    public class LocationController : BaseCrudController<LocationDto, ILocationsRepository, ILocationsService, LocationEditVM, LocationDetailsVM>
+    {
+        public LocationController(ILocationsService service, IMapper mapper) : base(service, mapper) { }
+    }
+}

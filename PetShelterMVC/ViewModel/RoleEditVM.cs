@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetShelterMVC.ViewModel
 {
-    public class RoleEditVM
+    public class RoleEditVM : BaseVM
     {
     }
 }

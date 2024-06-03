@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetShelterMVC.ViewModel
 {
-    public class ErrorViewModel
+    public class ErrorViewModel : BaseVM
     {
     }
 }

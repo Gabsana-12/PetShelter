@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetShelterMVC
 {
-    internal class AutoMapperConfiguration : Profile
+    public class AutoMapperConfiguration : Profile
     {
         public AutoMapperConfiguration()
         {

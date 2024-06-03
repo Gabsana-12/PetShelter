@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetShelterMVC.ViewModel
 {
-    public class PetVaccineDetailsVM
+    public class PetVaccineDetailsVM : BaseVM
     {
     }
 }

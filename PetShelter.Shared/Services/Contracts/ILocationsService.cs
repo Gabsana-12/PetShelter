@@ -11,5 +11,6 @@ namespace PetShelter.Services
 {
     public interface ILocationsService : IBaseCrudService<LocationDto, ILocationsRepository>
     {
+        Task<IEnumerable<LocationDto>> GetAllActiveAsync();
     }
 }

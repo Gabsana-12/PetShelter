@@ -13,5 +13,10 @@ namespace PetShelter.Services.Services
     public class UsersService : BaseCrudService<UserDto, IUsersRepository>, IUserService
     {
         public UsersService(IUsersRepository repository) : base(repository) { }
+
+        public async Task<bool> CanUserLoginAsync(string username, string password)
+        {
+            return await _repository.CanUserLoginAsync(username, password);
+        }
     }
 }

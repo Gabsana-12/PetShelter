@@ -11,5 +11,6 @@ namespace PetShelter.Services
 {
     public interface IUserService : IBaseCrudService<UserDto, IUsersRepository>
     {
+        public Task<bool> CanUserLoginAsync(string username, string password);
     }
 }

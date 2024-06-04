@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PetShelter.Data.Entities;
 using PetShelter.Shared.Attributes;
 using PetShelter.Shared.Dtos;

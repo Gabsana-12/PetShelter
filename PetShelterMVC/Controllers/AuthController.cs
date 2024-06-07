@@ -14,6 +14,7 @@ using PetShelter.Shared.Enums;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared;
+using PetShelter.Shared.Security;
 
 namespace PetShelterMVC.Controllers
 {

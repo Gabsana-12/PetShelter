@@ -1,13 +1,10 @@
 ﻿@model PetShelterMVC.ViewModel.BreedDetailsVM
 
-@{
-    ViewBag.Title = "Details";
-}
+@{ ViewBag.Title = "Details"; }
 
 <h2>Details</h2>
-
 <div>
-    <h4>Product</h4>
+    <h4>Products</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,19 +16,19 @@
         <dt>
             @Html.DisplayNameFor(model => model.Size)
         </dt>
-        <dd>
+        <dt>
             @Html.DisplayFor(model => model.Size)
-        </dd>
+        </dt>
         <dt>
             @Html.DisplayNameFor(model => model.Pets)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Pets)
         </dd>
+
     </dl>
 </div>
-
 <p>
-    @Html.ActionLink("Edit", "Edit", new{id = Model.Id})
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "List")
 </p>

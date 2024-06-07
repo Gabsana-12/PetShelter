@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PetShelter.Data.Entities;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
@@ -15,6 +16,10 @@ namespace PetShelter.Data.Repos
         public RolesRepository(PetShelterDbContext context, IMapper mapper) : base(context, mapper)
         {
 
+        }
+        public async Task<RoleDto> GetByNameIfExistsAsync(string name)
+        {
+            return MapToModel(await _dbSet.FirstOrDefaultAsync(u => u.Name == name));
         }
     }
 }

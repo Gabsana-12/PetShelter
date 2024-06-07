@@ -7,5 +7,6 @@ namespace PetShelterMVC.ViewModel
 {
     public class BaseVM
     {
+        public string Id { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PetShelter.Data.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PetShelter.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,13 @@ namespace PetShelterMVC.ViewModel
 
         public int? RoleId { get; set; }
 
+        public IEnumerable<SelectListItem> RoleList { get; set; }
+
         public virtual Role Role { get; set; }
 
         public int? ShelterId { get; set; }
 
+        public IEnumerable<SelectListItem> ShelterList { get; set; }
         public virtual Shelter Shelter { get; set; }
 
         public virtual List<Pet> AdoptedPets { get; set; }

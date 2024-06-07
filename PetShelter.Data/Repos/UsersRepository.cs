@@ -21,5 +21,9 @@ namespace PetShelter.Data.Repos
         {
             return await _dbSet.AnyAsync(ul => ul.Username == username && ul.Password == password);
         }
+        public async Task<UserDto> GetByUsernameAsync(string username)
+        {
+            return MapToModel(await _dbSet.FirstOrDefaultAsync(u => u.Username == username));
+        }
     }
 }

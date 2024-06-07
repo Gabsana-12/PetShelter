@@ -9,5 +9,6 @@ namespace PetShelter.Shared.Repos.Contracts
 {
     public interface IRolesRepository : IBaseRepository<RoleDto>
     {
+        public Task<RoleDto> GetByNameIfExistsAsync(string name);
     }
 }

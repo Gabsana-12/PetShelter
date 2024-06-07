@@ -11,5 +11,6 @@ namespace PetShelter.Services
 {
     public interface IRoleService : IBaseCrudService<RoleDto, IRolesRepository>
     {
+        public Task<RoleDto> GetByNameIfExistsAsync(string name);
     }
 }

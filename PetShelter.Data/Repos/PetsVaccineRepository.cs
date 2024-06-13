@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PetShelter.Data.Entities;
+using PetShelter.Shared.Attributes;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using System;
@@ -10,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Data.Repos
 {
-    internal class PetsVaccineRepository : BaseRepository<PetVaccine, PetVaccineDto>, IPetsVaccineRepository
+    [AutoBind]
+    public class PetsVaccineRepository : BaseRepository<PetVaccine, PetVaccineDto>, IPetsVaccineRepository
     {
         public PetsVaccineRepository(PetShelterDbContext context, IMapper mapper) : base(context, mapper)
         {

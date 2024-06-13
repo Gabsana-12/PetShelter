@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PetShelter.Data.Entities;
+using PetShelter.Shared.Attributes;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using System;
@@ -11,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace PetShelter.Data.Repos
 {
-    internal class UsersRepository : BaseRepository<User, UserDto>, IUsersRepository
+    [AutoBind]
+    public class UsersRepository : BaseRepository<User, UserDto>, IUsersRepository
     {
+        
         public UsersRepository(PetShelterDbContext context, IMapper mapper) : base(context, mapper)
         {
 

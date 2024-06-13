@@ -27,7 +27,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
+                        </li>
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -35,6 +42,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -42,6 +50,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -49,6 +58,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -56,6 +66,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -63,6 +74,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -70,6 +82,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -77,6 +90,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">
@@ -84,6 +98,7 @@
                             </li>
                         }
                         @if (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Employee.ToString() ||
+                        (Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.User.ToString()) ||
                         Context.User?.FindFirst(ClaimTypes.Role)?.Value == UserRole.Admin.ToString())
                         {
                             <li class=" nav-item">

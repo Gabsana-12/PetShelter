@@ -9,7 +9,7 @@ using PetShelterMVC.ViewModel;
 namespace PetShelterMVC.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Admin, Employee")]
-    public class PetVaccineController : BaseCrudController<PetVaccineDto, IPetsVaccineRepository, IPetVaccineService, PetVaccineDetailsVM, PetVaccineDetailsVM>
+    public class PetVaccineController : BaseCrudController<PetVaccineDto, IPetsVaccineRepository, IPetVaccineService, PetVaccineDetailsVM, PetVaccineEditVM>
     {
         public PetVaccineController(IPetVaccineService service, IMapper mapper) : base(service, mapper) { }
     }

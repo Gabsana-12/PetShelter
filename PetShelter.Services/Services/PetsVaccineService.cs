@@ -14,5 +14,9 @@ namespace PetShelter.Services.Services
     public class PetsVaccineService : BaseCrudService<PetVaccineDto, IPetsVaccineRepository>, IPetVaccineService
     {
         public PetsVaccineService(IPetsVaccineRepository repository) : base(repository) { }
+        public Task VaccinatePetAsync(int petId, int vaccineId)
+        {
+            return _repository.VaccinatePetAsync(petId, vaccineId);
+        }
     }
 }

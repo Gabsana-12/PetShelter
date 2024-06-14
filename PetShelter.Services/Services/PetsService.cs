@@ -14,5 +14,16 @@ namespace PetShelter.Services.Services
     public class PetsService : BaseCrudService<PetDto, IPetsRepository>, IPetsService
     {
         public PetsService(IPetsRepository repository) : base(repository) { }
+        public Task AdoptPetAsync(int userId, int petId)
+        {
+            return _repository.AdoptPetAsync(userId, petId);
+
+        }
+
+        public Task GivePetAsync(int userId, int shelterId, PetDto pet)
+        {
+            return _repository.GivePetAsync(userId, shelterId, pet);
+
+        }
     }
 }

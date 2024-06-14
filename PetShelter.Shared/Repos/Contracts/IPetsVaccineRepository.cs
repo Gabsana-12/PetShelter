@@ -9,5 +9,6 @@ namespace PetShelter.Shared.Repos.Contracts
 {
     public interface IPetsVaccineRepository : IBaseRepository<PetVaccineDto>
     {
+        Task VaccinatePetAsync(int petId, int vaccineId);
     }
 }

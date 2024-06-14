@@ -11,5 +11,8 @@ namespace PetShelter.Services
 {
     public interface IPetsService : IBaseCrudService<PetDto, IPetsRepository>
     {
+        Task GivePetAsync(int userId, int shelterId, PetDto pet);
+        Task VaccinatePetAsync(int vaccineId, int petId);
+        Task AdoptPetAsync(int userId, int petId);
     }
 }

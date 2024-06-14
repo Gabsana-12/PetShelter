@@ -5,12 +5,20 @@ using PetShelter.Services;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using PetShelterMVC.ViewModel;
+using System.Threading.Tasks;
 
 namespace PetShelterMVC.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Admin, Employee, User")]
     public class UserController : BaseCrudController<UserDto, IUsersRepository, IUserService, UserEditVM, UserDetailsVM>
     {
-        public UserController(IUserService service, IMapper mapper) : base(service, mapper) { }
+        private readonly IRoleService _roleService;
+        private readonly IShelterService _shelterService;
+
+
+        public UserController(IUserService service, IMapper mapper, IRoleService _roleService, IShelterService _shelterService) : base(service, mapper)
+        {
+
+        }
     }
 }

@@ -8,7 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShelter.Shared", "PetShe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShelter.Data", "PetShelter.Data\PetShelter.Data.csproj", "{F21E581F-C3C7-4B95-A58A-DAF6C2E8FB8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShelter.Services", "PetShelter.Services\PetShelter.Services.csproj", "{B8421C15-D618-44CB-838F-3571C6CC9904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShelter.Services", "PetShelter.Services\PetShelter.Services.csproj", "{B8421C15-D618-44CB-838F-3571C6CC9904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShelter.Tests", "PetShelter.Tests\PetShelter.Tests.csproj", "{2436D5B4-3C40-443B-9CA9-CDE68D1B0872}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{B8421C15-D618-44CB-838F-3571C6CC9904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8421C15-D618-44CB-838F-3571C6CC9904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8421C15-D618-44CB-838F-3571C6CC9904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2436D5B4-3C40-443B-9CA9-CDE68D1B0872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2436D5B4-3C40-443B-9CA9-CDE68D1B0872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2436D5B4-3C40-443B-9CA9-CDE68D1B0872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2436D5B4-3C40-443B-9CA9-CDE68D1B0872}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

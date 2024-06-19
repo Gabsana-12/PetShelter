@@ -12,9 +12,11 @@ namespace PetShelterMVC.ViewModel
     {
         [Required]
         public int PetCapacity { get; set; }
+
         [Required]
         [DisplayName("Location")]
         public int LocationId { get; set; }
+
         public IEnumerable<SelectListItem> LocationList { get; set; }
     }
 }

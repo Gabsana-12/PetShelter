@@ -18,6 +18,7 @@ namespace PetShelter.Data.Repos
         public PetsRepository(PetShelterDbContext context, IMapper mapper, IPetsVaccineRepository petVaccineRepository) : base(context, mapper)
         {
             _petVaccineRepository = petVaccineRepository;
+            
         }
         public async Task AdoptPetAsync(int userId, int petId)
         {

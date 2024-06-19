@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 namespace PetShelter.Services.Services
 {
     [AutoBind]
-    public class BreedsService : BaseCrudService<BreedDto, IBreedRepository>, IBreedsService
+    public class BreedsService : BaseCrudService<BreedDto, IBreedsRepository>, IBreedsService
     {
-        public BreedsService(IBreedRepository repository) : base(repository) { }
+        public BreedsService(IBreedsRepository repository) : base(repository) { }
     }
 }

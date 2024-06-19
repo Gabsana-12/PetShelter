@@ -9,7 +9,6 @@ namespace PetShelterMVC.ViewModel
     public class PetTypeDetailsVM : BaseVM
     {
         public string Name { get; set; }
-
-        public virtual List<Pet> Pets { get; set; }
+        public List<PetDetailsVM> Pets { get; set; }
     }
 }

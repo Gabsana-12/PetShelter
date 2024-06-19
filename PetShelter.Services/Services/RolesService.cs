@@ -13,9 +13,10 @@ namespace PetShelter.Services.Services
     public class RolesService : BaseCrudService<RoleDto, IRolesRepository>, IRoleService
     {
         public RolesService(IRolesRepository repository) : base(repository) { }
-        public async Task<RoleDto> GetByNameIfExistsAsync(string name)
+        public Task<RoleDto?> GetByNameIfExistsAsync(string name)
         {
-            return await _repository.GetByNameIfExistsAsync(name);
+            return _repository.GetByNameIfExistsAsync(name);
+
         }
     }
 }

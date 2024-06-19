@@ -2,6 +2,7 @@
 using PetShelter.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,27 +10,26 @@ namespace PetShelterMVC.ViewModel
 {
     public class UserEditVM : BaseVM
     {
+        [Required]
         public string Username { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
+        [Required]
         public int? RoleId { get; set; }
 
-        public IEnumerable<SelectListItem> RoleList { get; set; }
-
-        public virtual Role Role { get; set; }
-
+        [Required]
         public int? ShelterId { get; set; }
 
+        public IEnumerable<SelectListItem> RoleList { get; set; }
         public IEnumerable<SelectListItem> ShelterList { get; set; }
-        public virtual Shelter Shelter { get; set; }
 
-        public virtual List<Pet> AdoptedPets { get; set; }
-
-        public virtual List<Pet> GivenPets { get; set; }
     }
 }

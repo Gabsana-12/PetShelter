@@ -1,6 +1,7 @@
 ﻿using PetShelter.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,7 @@ namespace PetShelterMVC.ViewModel
 {
     public class PetTypeEditVM : BaseVM
     {
+        [Required]
         public string Name { get; set; }
-
-        public virtual List<Pet> Pets { get; set; }
     }
 }

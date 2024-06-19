@@ -2,12 +2,15 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PetShelter.Data.Repos;
 using PetShelter.Services;
 using PetShelter.Services.Services;
 using PetShelter.Shared;
 using PetShelter.Shared.Dtos;
 using PetShelter.Shared.Repos.Contracts;
 using PetShelterMVC.ViewModel;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -30,6 +33,85 @@ namespace PetShelterMVC.Controllers
             _userService = userService;
             _vaccinesService = vaccinesService;
         }
-       
+        protected override async Task<PetEditVM> PrePopulateVMAsync(PetEditVM editVM)
+        {
+            editVM.BreedList = (await _breedService.GetAllAsync())
+            .Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+
+            editVM.PetTypeList = (await _petTypeService.GetAllAsync())
+           .Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+
+            editVM.ShelterList = (await _shelterService.GetAllAsync())
+            .Select(x => new SelectListItem(x.PetCapacity.ToString(), x.Id.ToString()));
+
+            return editVM;
+        }
+        [HttpGet]
+        public virtual async Task<IActionResult> GivePet()
+        {
+            var editVM = await PrePopulateVMAsync(new PetEditVM());
+
+            return View(editVM);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> GivePet(PetEditVM editVM)
+        {
+            var errors = await Validate(editVM);
+
+            if (errors != null)
+            {
+                return View(editVM);
+            }
+            string loggedUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+            var user = await this._userService.GetByUsernameAsync(loggedUsername);
+            var model = this._mapper.Map<PetDto>(editVM);
+            await this._service.GivePetAsync(user.Id, model.ShelterId.Value, model);
+            return await List();
+        }
+        [HttpGet]
+        public virtual async Task<IActionResult> AdoptPet(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest(Constants.InvalidId);
+            }
+            string loggedUsername = User.FindFirst(ClaimTypes.Name)?.Value;
+            var model = await this._service.GetByIdIfExistsAsync(id.Value);
+            var user = await this._userService.GetByUsernameAsync(loggedUsername);
+            if (model == default)
+            {
+                return BadRequest(Constants.InvalidId);
+            }
+            await this._service.AdoptPetAsync(user.Id, id.Value);
+
+            return await List();
+        }
+        [HttpGet]
+        public virtual async Task<IActionResult> VaccinatePet(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest(Constants.InvalidId);
+            }
+            var model = await this._service.GetByIdIfExistsAsync(id.Value);
+            if (model == default)
+            {
+                return BadRequest(Constants.InvalidId);
+            }
+            var vaccinatedPet = new VaccinatePetVM();
+            vaccinatedPet.PetId = id.Value;
+            vaccinatedPet.VaccineList = (await _vaccinesService.GetAllAsync())
+                .Select(x => new SelectListItem($"{x.Name}", x.Id.ToString()));
+            return View(vaccinatedPet);
+        }
+        [HttpPost]
+        public virtual async Task<IActionResult> VaccinatePet(int id, VaccinatePetVM editVM)
+        {
+
+            await this._service.VaccinatePetAsync(editVM.PetId, editVM.VaccineId);
+            return await List();
+        }
+
     }
 }

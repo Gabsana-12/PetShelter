@@ -12,10 +12,10 @@ namespace PetShelterMVC.ViewModel
             this.Pets = new List<PetDetailsVM>();
             this.Employees = new List<UserDetailsVM>();
         }
-
         public int PetCapacity { get; set; }
         public int LocationId { get; set; }
-        public List<UserDetailsVM> Employees { get; set; }
-        public List<PetDetailsVM> Pets { get; set; }
+        public LocationDetailsVM Location { get; set; }
+        public virtual List<UserDetailsVM> Employees { get; set; }
+        public virtual List<PetDetailsVM> Pets { get; set; }
     }
 }

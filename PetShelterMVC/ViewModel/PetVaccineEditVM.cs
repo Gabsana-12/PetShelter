@@ -1,13 +1,18 @@
-﻿using PetShelter.Data.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PetShelter.Data.Entities;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PetShelterMVC.ViewModel
 {
     public class PetVaccineEditVM: BaseVM
     {
-        public virtual List<PetVaccine> PetList { get; set; }
-        public virtual List<PetVaccine> VaccineList { get; set; }
+        [Required]
         public int PetId { get; set; }
+        [Required]
         public int VaccineId { get; set; }
+
+        public IEnumerable<SelectListItem> PetList { get; set; }
+        public IEnumerable<SelectListItem> VaccineList { get; set; }
     }
 }

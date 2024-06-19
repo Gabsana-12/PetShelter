@@ -19,12 +19,12 @@ namespace PetShelterMVC.Controllers
         where TModel : BaseModel
         where TRepository : IBaseRepository<TModel>
         where TService : IBaseCrudService<TModel, TRepository>
-        where TEditVM:BaseVM, new()
+        where TEditVM : BaseVM, new()
         where TDetailsVM : BaseVM
+
     {
         protected readonly TService _service;
         protected readonly IMapper _mapper;
-
         protected BaseCrudController(TService service, IMapper mapper)
         {
             this._service = service;
@@ -35,23 +35,19 @@ namespace PetShelterMVC.Controllers
         protected const int DefaultPageNumber = 1;
         protected const int MaxPageSize = 100;
 
-
         protected virtual Task<string?> Validate(TEditVM editVM)
         {
             return Task.FromResult<string?>(null);
         }
 
-
-        protected virtual Task<TEditVM> PrePopulateVMAsync()
+        protected virtual Task<TEditVM> PrePopulateVMAsync(TEditVM editVM)
         {
-            return Task.FromResult(new TEditVM());
+            return Task.FromResult(editVM);
         }
 
-
         [HttpGet]
-        public virtual async Task<IActionResult> List(
-            int pageSize = DefaultPageSize,
-            int pageNumber = DefaultPageNumber)
+
+        public virtual async Task<IActionResult> List(int pageSize = DefaultPageSize, int pageNumber = DefaultPageNumber)
         {
             if (pageSize <= 0 ||
                 pageSize > MaxPageSize ||
@@ -59,7 +55,6 @@ namespace PetShelterMVC.Controllers
             {
                 return BadRequest(Constants.InvalidPagination);
             }
-
             var models = await this._service.GetWithPaginationAsync(pageSize, pageNumber);
             var mappedModels = _mapper.Map<IEnumerable<TDetailsVM>>(models);
             return View(nameof(List), mappedModels);
@@ -76,14 +71,12 @@ namespace PetShelterMVC.Controllers
             var mappedModel = _mapper.Map<TDetailsVM>(model);
             return View(mappedModel);
         }
-
         [HttpGet]
         public virtual async Task<IActionResult> Create()
         {
-            var editVM = await PrePopulateVMAsync();
+            var editVM = await PrePopulateVMAsync(new TEditVM());
             return View(editVM);
         }
-
         [HttpPost]
         public virtual async Task<IActionResult> Create(TEditVM editVM)
         {
@@ -95,8 +88,8 @@ namespace PetShelterMVC.Controllers
             var model = this._mapper.Map<TModel>(editVM);
             await this._service.SaveAsync(model);
             return await List();
-        }
 
+        }
         [HttpGet]
         public virtual async Task<IActionResult> Edit(int? id)
         {
@@ -104,35 +97,35 @@ namespace PetShelterMVC.Controllers
             {
                 return BadRequest(Constants.InvalidId);
             }
+
             var model = await this._service.GetByIdIfExistsAsync(id.Value);
             if (model == default)
             {
                 return BadRequest(Constants.InvalidId);
             }
-
             var mappedModel = _mapper.Map<TEditVM>(model);
+            mappedModel = await PrePopulateVMAsync(mappedModel
+                );
             return View(mappedModel);
         }
-
         [HttpPost]
-        public virtual async Task<IActionResult>Edit(int id, TEditVM editVM)
+        public virtual async Task<IActionResult> Edit(int id, TEditVM editVM)
         {
             var errors = await Validate(editVM);
-            if (errors!=null)
+            if (errors != null)
             {
                 return View(editVM);
             }
-
             if (!await this._service.ExistsByIdAsync(id))
             {
                 return BadRequest(Constants.InvalidId);
-            }
 
+            }
             var mappedModel = _mapper.Map<TModel>(editVM);
             await this._service.SaveAsync(mappedModel);
             return await List();
-        }
 
+        }
         [HttpGet]
         public virtual async Task<IActionResult> Delete(int? id)
         {
@@ -149,6 +142,7 @@ namespace PetShelterMVC.Controllers
             }
 
             var mappedModel = _mapper.Map<TDetailsVM>(model);
+
             return View(mappedModel);
         }
 
@@ -161,6 +155,7 @@ namespace PetShelterMVC.Controllers
             }
 
             await this._service.DeleteAsync(id);
+
             return await List();
         }
     }

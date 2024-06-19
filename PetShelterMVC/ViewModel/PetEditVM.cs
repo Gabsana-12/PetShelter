@@ -12,36 +12,36 @@ namespace PetShelterMVC.ViewModel
     {
         [Required]
         public string Name { get; set; }
+
         [Required]
         public int Age { get; set; }
+
         [Required]
         public string Color { get; set; }
 
-        public int PetTypeId { get; set; }
-
-        public int BreedId { get; set; }
-
-        public int? AdopterId { get; set; }
-
-        public int? GiverId { get; set; }
-
-        public int? ShelterId { get; set; }
+        [Required]
         public bool IsAdopted { get; set; }
 
+        [Required]
         public bool IsEuthanized { get; set; }
 
-        public virtual PetType PetType { get; set; }
+        [Required]
+        public int PetTypeId { get; set; }
 
-        public virtual Breed Breed { get; set; }
+        [Required]
+        public int BreedId { get; set; }
 
-        public virtual User Adopter { get; set; }
+        [Required]
+        public int? AdopterId { get; set; }
 
-        public virtual User Giver { get; set; }
+        [Required]
+        public int? GiverId { get; set; }
 
-        public virtual Shelter Shelter { get; set; }
+        [Required]
+        public int? ShelterId { get; set; }
 
-        public IEnumerable<SelectListItem> BreedList { get; set; }
         public IEnumerable<SelectListItem> PetTypeList { get; set; }
+        public IEnumerable<SelectListItem> BreedList { get; set; }
         public IEnumerable<SelectListItem> ShelterList { get; set; }
     }
 }

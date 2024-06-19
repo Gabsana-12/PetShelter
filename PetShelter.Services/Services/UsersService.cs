@@ -14,14 +14,15 @@ namespace PetShelter.Services.Services
     {
         public UsersService(IUsersRepository repository) : base(repository) { }
 
-        public async Task<bool> CanUserLoginAsync(string username, string password)
+        public Task<bool> CanUserLoginAsync(string username, string password)
+        {
+            return _repository.CanUserLoginAsync(username, password);
+        }
 
+        public Task<UserDto> GetByUsernameAsync(string username)
         {
-            return await _repository.CanUserLoginAsync(username, password);
+            return _repository.GetByUsernameAsync(username);
         }
-        public async Task<UserDto> GetByUsernameAsync(string username)
-        {
-            return await _repository.GetByUsernameAsync(username);
-        }
+
     }
 }

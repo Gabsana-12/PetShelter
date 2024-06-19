@@ -4,7 +4,7 @@ using PetShelter.Shared.Services.Contracts;
 
 namespace PetShelter.Services
 {
-    public interface IBreedsService : IBaseCrudService<BreedDto, IBreedRepository>
+    public interface IBreedsService : IBaseCrudService<BreedDto, IBreedsRepository>
     {
     }
 }

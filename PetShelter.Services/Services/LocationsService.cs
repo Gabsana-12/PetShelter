@@ -10,9 +10,7 @@ namespace PetShelter.Services.Services
     public class LocationsService : BaseCrudService<LocationDto, ILocationsRepository>, ILocationsService
     {
         public LocationsService(ILocationsRepository repository) : base(repository) { }
-        public async Task<IEnumerable<LocationDto>> GetAllActiveAsync()
-        {
-            return await _repository.GetAllActiveAsync();
-        }
+        public Task<IEnumerable<LocationDto>> GetAllActiveAsync()
+            => this._repository.GetAllActiveAsync();
     }
 }

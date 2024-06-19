@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace PetShelter.Data.Repos
 {
     [AutoBind]
-    public class BreedsRepository : BaseRepository<Breed, BreedDto>, IBreedRepository
+    public class BreedsRepository : BaseRepository<Breed, BreedDto>, IBreedsRepository
     {
         public BreedsRepository(PetShelterDbContext context, IMapper mapper) : base(context, mapper)
         {

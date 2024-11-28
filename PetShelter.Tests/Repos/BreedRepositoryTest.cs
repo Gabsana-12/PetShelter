@@ -11,6 +11,6 @@ namespace PetShelter.Tests.Repos
 {
     public class BreedRepositoryTests : BaseRepositoryTest<BreedsRepository, Breed, BreedDto>
     {
-
+        
     }
 }
